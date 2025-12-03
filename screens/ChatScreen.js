@@ -38,7 +38,10 @@ const ChatScreen = () => {
   const firestore = getFirestore(app);
   const route = useRoute();
   const { user, profilePicture, username } = route.params;
-  const participantIds = [auth.currentUser.uid, user.uid].sort().join('_');
+  const participantIds = 
+    auth.currentUser.uid < user.uid
+      ? `${auth.currentUser.uid}_${user.uid}`
+      : `${user.uid}_${auth.currentUser.uid}`;
 
   const VideoC = () => {
     navigation.navigate('VideoCall', { user, profilePicture });

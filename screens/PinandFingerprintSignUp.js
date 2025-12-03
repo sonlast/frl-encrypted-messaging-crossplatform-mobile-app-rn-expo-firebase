@@ -143,7 +143,8 @@ const SignUpScreen = ({ navigation }) => {
               if (key === "custom_left") {
                 pinView.current.clear();
               } else if (key === "custom_right") {
-                handlePinComplete(enteredPin, pinView.current.clear);
+                handlePinComplete(enteredPin);
+                pinView.current.clear();
               }
             }}
             customLeftButton={showRemoveButton ? <FontAwesomeIcon icon={faDeleteLeft} size={48} color={"#000"} /> : undefined}

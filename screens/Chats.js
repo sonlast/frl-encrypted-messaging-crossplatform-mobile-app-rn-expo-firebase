@@ -90,7 +90,9 @@ const Chats = () => {
       const userList = await Promise.all(
         userSnapshot.docs.map(async (doc) => {
           const userData = doc.data();
-          const participantIds = [auth.currentUser.uid, doc.id].sort().join('_');
+          const participantIds = [auth.currentUser.uid, doc.id]
+            .sort((a, b) => (a < b ? -1 : 1))
+            .join('_');
           const recentMessageQuery = query(
             collection(firestore, 'chats'),
             where('participants', '==', participantIds),
